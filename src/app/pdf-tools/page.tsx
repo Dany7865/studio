@@ -9,6 +9,7 @@ import { Download, FileUp, Merge, Shuffle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import jsPDF from 'jspdf';
 
 export default function PdfToolsPage() {
   const [fileToConvert, setFileToConvert] = useState<File | null>(null);
@@ -20,21 +21,45 @@ export default function PdfToolsPage() {
   const handleConvertToPdf = () => {
     if (!fileToConvert) {
       toast({
-        variant: "destructive",
-        title: "No file selected",
-        description: "Please select a file to convert.",
+        variant: 'destructive',
+        title: 'No file selected',
+        description: 'Please select a file to convert.',
       });
       return;
     }
-    // This is a mock conversion. In a real app, you'd send the file to a server.
-    const blob = new Blob(["This is a mock PDF file and not a valid PDF document."], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    setConvertedFileUrl(url);
 
-    toast({
-      title: "Conversion Successful (Demonstration)",
-      description: `A placeholder PDF has been generated. This is for demonstration purposes only and is not a valid PDF file.`,
-    });
+    const isImage = fileToConvert.type.startsWith('image/');
+    if (!isImage) {
+      toast({
+        variant: 'destructive',
+        title: 'Unsupported File Type',
+        description: 'Currently, only image to PDF conversion is supported.',
+      });
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const imgData = event.target?.result as string;
+      const doc = new jsPDF();
+      const img = new Image();
+      img.src = imgData;
+      img.onload = () => {
+        const imgWidth = img.width;
+        const imgHeight = img.height;
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (imgHeight * pdfWidth) / imgWidth;
+        doc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        const pdfBlob = doc.output('blob');
+        const url = URL.createObjectURL(pdfBlob);
+        setConvertedFileUrl(url);
+        toast({
+          title: 'Conversion Successful',
+          description: 'Your image has been converted to a PDF.',
+        });
+      };
+    };
+    reader.readAsDataURL(fileToConvert);
   };
 
   const handleMergePdfs = () => {
@@ -53,8 +78,8 @@ export default function PdfToolsPage() {
     setMergedFileUrl(url);
 
     toast({
-      title: "Merge Successful",
-      description: `${filesToMerge.length} files have been merged into a single PDF. (Demonstration)`,
+      title: "Merge Successful (Demonstration)",
+      description: `${filesToMerge.length} files have been merged into a single PDF. This is for demonstration purposes.`,
     });
   };
 
@@ -78,13 +103,13 @@ export default function PdfToolsPage() {
         <TabsContent value="converter" className="mt-4">
           <Card>
             <CardHeader>
-              <CardTitle>PDF Converter</CardTitle>
-              <CardDescription>Convert various file types to PDF.</CardDescription>
+              <CardTitle>Image to PDF Converter</CardTitle>
+              <CardDescription>Convert JPEG or PNG images to PDF.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="file-converter">Select File</Label>
-                <Input id="file-converter" type="file" onChange={(e) => { setFileToConvert(e.target.files?.[0] || null); setConvertedFileUrl(null); }} />
+                <Label htmlFor="file-converter">Select Image File</Label>
+                <Input id="file-converter" type="file" accept="image/jpeg, image/png" onChange={(e) => { setFileToConvert(e.target.files?.[0] || null); setConvertedFileUrl(null); }} />
               </div>
               <Button className="w-full" onClick={handleConvertToPdf}>
                 <FileUp className="mr-2 size-4" /> Convert to PDF
@@ -108,7 +133,7 @@ export default function PdfToolsPage() {
             <CardContent className="space-y-4">
               <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="file-merger">Select Files</Label>
-                <Input id="file-merger" type="file" multiple onChange={(e) => { setFilesToMerge(e.target.files); setMergedFileUrl(null); }} />
+                <Input id="file-merger" type="file" multiple accept="application/pdf" onChange={(e) => { setFilesToMerge(e.target.files); setMergedFileUrl(null); }} />
               </div>
               <Button className="w-full" onClick={handleMergePdfs}>
                 <Merge className="mr-2 size-4" /> Merge PDFs
