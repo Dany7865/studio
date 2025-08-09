@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, BookOpen, BrainCircuit, FileCog, FileText } from "lucide-react";
-import Image from "next/image";
 
 const features = [
   {
@@ -34,24 +33,18 @@ const features = [
 export default function Home() {
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid lg:grid-cols-2 gap-8 items-center">
-        <div className="text-center lg:text-left">
-          <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+      <div 
+        className="relative rounded-xl p-8 lg:p-12 text-center text-white bg-cover bg-center"
+        style={{ backgroundImage: "url('https://storage.googleapis.com/stately-studio-public/edumate-robot.png')" }}
+      >
+        <div className="absolute inset-0 bg-black/50 rounded-xl" />
+        <div className="relative z-10">
+          <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
             Welcome to EduMate.AI
           </h1>
-          <p className="mt-2 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto">
             Your all-in-one platform for academic success and career guidance.
           </p>
-        </div>
-        <div className="flex justify-center">
-          <Image 
-            src="https://storage.googleapis.com/stately-studio-public/edumate-robot.png"
-            alt="EduMate.AI Mascot"
-            width={300}
-            height={300}
-            data-ai-hint="robot mascot"
-            className="rounded-lg"
-          />
         </div>
       </div>
 
