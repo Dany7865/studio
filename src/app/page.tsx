@@ -34,10 +34,8 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-8">
       <div 
-        className="relative rounded-xl p-8 lg:p-12 text-center text-white bg-cover bg-center"
-        style={{ backgroundImage: "url('https://storage.googleapis.com/stately-studio-public/edumate-robot.png')" }}
+        className="relative rounded-xl p-8 lg:p-12 text-center text-white"
       >
-        <div className="absolute inset-0 bg-black/50 rounded-xl" />
         <div className="relative z-10">
           <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
             Welcome to EduMate.AI
@@ -51,7 +49,7 @@ export default function Home() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
         {features.map((feature) => (
-          <Card key={feature.title} className="flex flex-col transition-transform transform hover:-translate-y-1">
+          <Card key={feature.title} className="flex flex-col transition-transform transform hover:-translate-y-1 bg-card/80 backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-start gap-4">
                 {feature.icon}
