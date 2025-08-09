@@ -23,10 +23,10 @@ interface UploadedFile {
 }
 
 const sampleUploads: UploadedFile[] = [
-  { id: '1', name: 'DS_Unit1_Notes.pdf', type: 'PDF', course: 'B.Tech', subject: 'Data Structures', uploader: 'Rohan Sharma', url: '#', previewUrl: 'https://placehold.co/600x400.png' },
-  { id: '2', name: 'C-Lang-PYQ-2022.pdf', type: 'PDF', course: 'BCA', subject: 'Programming in C', uploader: 'Priya Singh', url: '#', previewUrl: 'https://placehold.co/600x400.png' },
-  { id: '3', name: 'EM_Lecture3.mp4', type: 'Video', course: 'B.Sc', subject: 'Electromagnetism', uploader: 'Ankit Gupta', url: '#', previewUrl: 'https://placehold.co/600x400.png' },
-  { id: '4', name: 'ML_Handwritten_Notes.zip', type: 'ZIP', course: 'B.Tech', subject: 'Machine Learning', uploader: 'Sneha Reddy', url: '#', previewUrl: 'https://placehold.co/600x400.png' },
+  { id: '1', name: 'DS_Unit1_Notes.pdf', type: 'PDF', course: 'B.Tech', subject: 'Data Structures', uploader: 'Rohan Sharma', url: 'https://placehold.co/600x400.png', previewUrl: 'https://placehold.co/600x400.png' },
+  { id: '2', name: 'C-Lang-PYQ-2022.pdf', type: 'PDF', course: 'BCA', subject: 'Programming in C', uploader: 'Priya Singh', url: 'https://placehold.co/600x400.png', previewUrl: 'https://placehold.co/600x400.png' },
+  { id: '3', name: 'EM_Lecture3.mp4', type: 'Video', course: 'B.Sc', subject: 'Electromagnetism', uploader: 'Ankit Gupta', url: 'https://placehold.co/600x400.png', previewUrl: 'https://placehold.co/600x400.png' },
+  { id: '4', name: 'ML_Handwritten_Notes.zip', type: 'ZIP', course: 'B.Tech', subject: 'Machine Learning', uploader: 'Sneha Reddy', url: 'https://placehold.co/600x400.png', previewUrl: 'https://placehold.co/600x400.png' },
 ];
 
 export default function CommunityUploadsPage() {
