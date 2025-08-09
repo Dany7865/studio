@@ -51,6 +51,7 @@ export default function Home() {
             height={250}
             className="rounded-full object-cover"
             priority
+            data-ai-hint="robot mascot"
           />
         </div>
       </Card>
