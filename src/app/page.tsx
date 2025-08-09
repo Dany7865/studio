@@ -45,18 +45,6 @@ export default function Home() {
         </div>
       </Card>
 
-      <div className="flex justify-center">
-        <Image 
-          src="https://storage.googleapis.com/project-spark-34129338-2d86-45db-9922-421c60f785b4/public/images/f36e4f1a-b0c6-4a7b-a1e4-3e9a58933b9c.png"
-          alt="AI Robot teaching in a classroom"
-          width={200}
-          height={133}
-          quality={75}
-          className="rounded-lg shadow-xl"
-          data-ai-hint="robot classroom"
-        />
-      </div>
-
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
         {features.map((feature) => (
           <Card key={feature.title} className="flex flex-col transition-transform transform hover:-translate-y-1 bg-card/80 backdrop-blur-sm">
