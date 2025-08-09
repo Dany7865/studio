@@ -43,15 +43,6 @@ export default function Home() {
             Your all-in-one platform for academic success and career guidance.
           </p>
         </div>
-        <div className="my-4">
-            <Image
-                src="https://storage.googleapis.com/project-spark-341293388745.appspot.com/images%2Fa9f43628-9844-4065-98e3-b0e271987573.png"
-                alt="Friendly AI robot reading a book"
-                width={150}
-                height={150}
-                data-ai-hint="robot book"
-            />
-        </div>
       </Card>
 
 
