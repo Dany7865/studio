@@ -45,6 +45,16 @@ export default function Home() {
         </div>
       </Card>
 
+      <div className="flex justify-center">
+        <Image 
+          src="https://storage.googleapis.com/project-spark-34129338-2d86-45db-9922-421c60f785b4/public/images/robot-reading.png"
+          alt="AI Robot reading a book"
+          width={250}
+          height={250}
+          className="rounded-lg"
+          data-ai-hint="robot book"
+        />
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
         {features.map((feature) => (
