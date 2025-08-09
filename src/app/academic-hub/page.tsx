@@ -67,10 +67,10 @@ export default function AcademicHubPage() {
                                   </CardHeader>
                                   <CardContent className="p-4 pt-0">
                                     <div className="flex flex-wrap gap-2">
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><Book className="mr-2 size-4" /> Notes (PDF)</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><FilePen className="mr-2 size-4" /> Handwritten (PDF)</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><FileQuestion className="mr-2 size-4" /> PYQs (PDF)</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><Video className="mr-2 size-4" /> YouTube Videos</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank"><Book className="mr-2 size-4" /> Notes (PDF)</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank"><FilePen className="mr-2 size-4" /> Handwritten (PDF)</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank"><FileQuestion className="mr-2 size-4" /> PYQs (PDF)</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href={`https://www.youtube.com/results?search_query=${encodeURIComponent(subject)}`} target="_blank"><Video className="mr-2 size-4" /> YouTube Videos</Link></Button>
                                     </div>
                                   </CardContent>
                                 </Card>
