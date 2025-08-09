@@ -37,6 +37,11 @@ const resumeSchema = z.object({
     date: z.string().min(1, 'Date is required'),
     description: z.string().min(1, 'Description is required'),
   })),
+  projects: z.array(z.object({
+    name: z.string().min(1, 'Project name is required'),
+    date: z.string().min(1, 'Date is required'),
+    description: z.string().min(1, 'Description is required'),
+  })),
   skills: z.string().min(1, 'At least one skill is required'),
 });
 
@@ -51,6 +56,7 @@ export function ResumeBuilderClient() {
       experience: [{ company: '', role: '', years: '', description: '' }],
       achievements: [{ description: '' }],
       hackathons: [{ name: '', date: '', description: '' }],
+      projects: [{ name: '', date: '', description: '' }],
       skills: '',
     },
   });
@@ -59,6 +65,7 @@ export function ResumeBuilderClient() {
   const { fields: expFields, append: appendExp, remove: removeExp } = useFieldArray({ control: form.control, name: 'experience' });
   const { fields: achFields, append: appendAch, remove: removeAch } = useFieldArray({ control: form.control, name: 'achievements' });
   const { fields: hackFields, append: appendHack, remove: removeHack } = useFieldArray({ control: form.control, name: 'hackathons' });
+  const { fields: projFields, append: appendProj, remove: removeProj } = useFieldArray({ control: form.control, name: 'projects' });
 
   const resumeData = form.watch();
 
@@ -124,6 +131,17 @@ export function ResumeBuilderClient() {
                 ))}
                 <Button type="button" variant="outline" size="sm" onClick={() => appendHack({ name: '', date: '', description: '' })}><PlusCircle className="mr-2 size-4" /> Add Hackathon</Button>
                 <Separator />
+                <h3 className="text-lg font-semibold border-b pb-2">Projects</h3>
+                {projFields.map((field, index) => (
+                  <div key={field.id} className="p-4 border rounded-md space-y-4 relative bg-muted/50">
+                    <FormField control={form.control} name={`projects.${index}.name`} render={({ field }) => ( <FormItem><FormLabel>Project Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
+                    <FormField control={form.control} name={`projects.${index}.date`} render={({ field }) => ( <FormItem><FormLabel>Date</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
+                    <FormField control={form.control} name={`projects.${index}.description`} render={({ field }) => ( <FormItem><FormLabel>Description</FormLabel><FormControl><Textarea rows={3} {...field} /></FormControl><FormMessage /></FormItem> )} />
+                    <Button variant="ghost" size="icon" className="absolute top-2 right-2" onClick={() => removeProj(index)}><Trash2 className="size-4 text-destructive"/></Button>
+                  </div>
+                ))}
+                <Button type="button" variant="outline" size="sm" onClick={() => appendProj({ name: '', date: '', description: '' })}><PlusCircle className="mr-2 size-4" /> Add Project</Button>
+                <Separator />
                 <h3 className="text-lg font-semibold border-b pb-2">Skills</h3>
                 <FormField control={form.control} name="skills" render={({ field }) => ( <FormItem><FormLabel>Skills (comma separated)</FormLabel><FormControl><Textarea placeholder="e.g., React, Node.js, Python, SQL" {...field} /></FormControl><FormMessage /></FormItem> )} />
               </form>
@@ -150,6 +168,10 @@ export function ResumeBuilderClient() {
               <div>
                 <h2 className="text-lg font-bold border-b-2 border-primary mb-2 text-primary">EDUCATION</h2>
                 {resumeData.education.map((edu, i) => (edu.institution && <div key={i} className="mb-2"><div className="flex justify-between items-baseline"><h3 className="font-semibold">{edu.institution || 'University Name'}</h3><p className="text-sm text-muted-foreground">{edu.year || '20XX'}</p></div><p className="text-sm italic">{edu.degree || 'Your Degree'}</p></div>))}
+              </div>
+               <div>
+                <h2 className="text-lg font-bold border-b-2 border-primary mb-2 text-primary">PROJECTS</h2>
+                {resumeData.projects?.map((proj, i) => (proj.name && <div key={i} className="mb-4"><div className="flex justify-between items-baseline"><h3 className="font-semibold">{proj.name || 'Project Name'}</h3><p className="text-sm text-muted-foreground">{proj.date || 'YYYY-MM'}</p></div><p className="text-sm mt-1">{proj.description || 'Description of your project.'}</p></div>))}
               </div>
               <div>
                 <h2 className="text-lg font-bold border-b-2 border-primary mb-2 text-primary">ACHIEVEMENTS</h2>
