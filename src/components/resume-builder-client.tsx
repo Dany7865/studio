@@ -29,6 +29,14 @@ const resumeSchema = z.object({
     years: z.string().min(1, 'Years are required'),
     description: z.string().min(1, 'Description is required'),
   })),
+  achievements: z.array(z.object({
+    description: z.string().min(1, 'Achievement is required'),
+  })),
+  hackathons: z.array(z.object({
+    name: z.string().min(1, 'Hackathon name is required'),
+    date: z.string().min(1, 'Date is required'),
+    description: z.string().min(1, 'Description is required'),
+  })),
   skills: z.string().min(1, 'At least one skill is required'),
 });
 
@@ -41,12 +49,16 @@ export function ResumeBuilderClient() {
       fullName: '', email: '', phone: '', address: '', summary: '',
       education: [{ institution: '', degree: '', year: '' }],
       experience: [{ company: '', role: '', years: '', description: '' }],
+      achievements: [{ description: '' }],
+      hackathons: [{ name: '', date: '', description: '' }],
       skills: '',
     },
   });
   
   const { fields: eduFields, append: appendEdu, remove: removeEdu } = useFieldArray({ control: form.control, name: 'education' });
   const { fields: expFields, append: appendExp, remove: removeExp } = useFieldArray({ control: form.control, name: 'experience' });
+  const { fields: achFields, append: appendAch, remove: removeAch } = useFieldArray({ control: form.control, name: 'achievements' });
+  const { fields: hackFields, append: appendHack, remove: removeHack } = useFieldArray({ control: form.control, name: 'hackathons' });
 
   const resumeData = form.watch();
 
@@ -92,6 +104,26 @@ export function ResumeBuilderClient() {
                 ))}
                 <Button type="button" variant="outline" size="sm" onClick={() => appendExp({ company: '', role: '', years: '', description: '' })}><PlusCircle className="mr-2 size-4" /> Add Experience</Button>
                 <Separator />
+                <h3 className="text-lg font-semibold border-b pb-2">Achievements</h3>
+                {achFields.map((field, index) => (
+                  <div key={field.id} className="p-4 border rounded-md space-y-4 relative bg-muted/50">
+                    <FormField control={form.control} name={`achievements.${index}.description`} render={({ field }) => ( <FormItem><FormLabel>Achievement</FormLabel><FormControl><Textarea rows={2} {...field} /></FormControl><FormMessage /></FormItem> )} />
+                    <Button variant="ghost" size="icon" className="absolute top-2 right-2" onClick={() => removeAch(index)}><Trash2 className="size-4 text-destructive"/></Button>
+                  </div>
+                ))}
+                <Button type="button" variant="outline" size="sm" onClick={() => appendAch({ description: '' })}><PlusCircle className="mr-2 size-4" /> Add Achievement</Button>
+                <Separator />
+                <h3 className="text-lg font-semibold border-b pb-2">Hackathons</h3>
+                {hackFields.map((field, index) => (
+                  <div key={field.id} className="p-4 border rounded-md space-y-4 relative bg-muted/50">
+                    <FormField control={form.control} name={`hackathons.${index}.name`} render={({ field }) => ( <FormItem><FormLabel>Hackathon Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
+                    <FormField control={form.control} name={`hackathons.${index}.date`} render={({ field }) => ( <FormItem><FormLabel>Date</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem> )} />
+                    <FormField control={form.control} name={`hackathons.${index}.description`} render={({ field }) => ( <FormItem><FormLabel>Description</FormLabel><FormControl><Textarea rows={3} {...field} /></FormControl><FormMessage /></FormItem> )} />
+                    <Button variant="ghost" size="icon" className="absolute top-2 right-2" onClick={() => removeHack(index)}><Trash2 className="size-4 text-destructive"/></Button>
+                  </div>
+                ))}
+                <Button type="button" variant="outline" size="sm" onClick={() => appendHack({ name: '', date: '', description: '' })}><PlusCircle className="mr-2 size-4" /> Add Hackathon</Button>
+                <Separator />
                 <h3 className="text-lg font-semibold border-b pb-2">Skills</h3>
                 <FormField control={form.control} name="skills" render={({ field }) => ( <FormItem><FormLabel>Skills (comma separated)</FormLabel><FormControl><Textarea placeholder="e.g., React, Node.js, Python, SQL" {...field} /></FormControl><FormMessage /></FormItem> )} />
               </form>
@@ -118,6 +150,16 @@ export function ResumeBuilderClient() {
               <div>
                 <h2 className="text-lg font-bold border-b-2 border-primary mb-2 text-primary">EDUCATION</h2>
                 {resumeData.education.map((edu, i) => (edu.institution && <div key={i} className="mb-2"><div className="flex justify-between items-baseline"><h3 className="font-semibold">{edu.institution || 'University Name'}</h3><p className="text-sm text-muted-foreground">{edu.year || '20XX'}</p></div><p className="text-sm italic">{edu.degree || 'Your Degree'}</p></div>))}
+              </div>
+              <div>
+                <h2 className="text-lg font-bold border-b-2 border-primary mb-2 text-primary">ACHIEVEMENTS</h2>
+                <ul className="list-disc pl-5 space-y-1">
+                  {resumeData.achievements?.map((ach, i) => (ach.description && <li key={i} className="text-sm">{ach.description}</li>))}
+                </ul>
+              </div>
+              <div>
+                <h2 className="text-lg font-bold border-b-2 border-primary mb-2 text-primary">HACKATHONS</h2>
+                {resumeData.hackathons?.map((hack, i) => (hack.name && <div key={i} className="mb-4"><div className="flex justify-between items-baseline"><h3 className="font-semibold">{hack.name || 'Hackathon Name'}</h3><p className="text-sm text-muted-foreground">{hack.date || 'YYYY-MM'}</p></div><p className="text-sm mt-1">{hack.description || 'Description of your project and role in the hackathon.'}</p></div>))}
               </div>
               <div>
                 <h2 className="text-lg font-bold border-b-2 border-primary mb-2 text-primary">SKILLS</h2>
