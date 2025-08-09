@@ -1,28 +1,76 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Book, Upload, Video, FileQuestion, FilePen, GraduationCap } from "lucide-react";
-import Link from "next/link";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Book,
+  FilePen,
+  FileQuestion,
+  GraduationCap,
+  Upload,
+  Video,
+} from 'lucide-react';
+import Link from 'next/link';
 
 const courses = {
-  "B.Tech": {
+  'B.Tech': {
     semesters: 8,
-    subjects: [ "Engineering Mathematics", "Data Structures", "Algorithms", "Operating Systems", "Database Management", "Computer Networks", "Software Engineering", "Machine Learning" ],
+    subjects: [
+      'Engineering Mathematics',
+      'Data Structures',
+      'Algorithms',
+      'Operating Systems',
+      'Database Management',
+      'Computer Networks',
+      'Software Engineering',
+      'Machine Learning',
+    ],
   },
-  "BCA": {
+  BCA: {
     semesters: 6,
-    subjects: [ "Fundamentals of IT", "Programming in C", "Data Structures", "Object Oriented Programming", "Web Technologies", "Java Programming" ],
+    subjects: [
+      'Fundamentals of IT',
+      'Programming in C',
+      'Data Structures',
+      'Object Oriented Programming',
+      'Web Technologies',
+      'Java Programming',
+    ],
   },
-  "B.Sc": {
+  'B.Sc': {
     semesters: 6,
-    subjects: [ "Calculus", "Mechanics", "Electromagnetism", "Quantum Physics", "Organic Chemistry", "Botany & Zoology" ],
+    subjects: [
+      'Calculus',
+      'Mechanics',
+      'Electromagnetism',
+      'Quantum Physics',
+      'Organic Chemistry',
+      'Botany & Zoology',
+    ],
   },
-  "MBA": {
+  MBA: {
     semesters: 4,
-    subjects: [ "Managerial Economics", "Marketing Management", "Financial Accounting", "Human Resource Management", "Operations Management", "Business Strategy" ],
-  }
+    subjects: [
+      'Managerial Economics',
+      'Marketing Management',
+      'Financial Accounting',
+      'Human Resource Management',
+      'Operations Management',
+      'Business Strategy',
+    ],
+  },
 };
 
 export default function AcademicHubPage() {
@@ -33,7 +81,8 @@ export default function AcademicHubPage() {
           Academic Hub
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
-          Find all your academic resources in one place, sourced from top institutions and communities.
+          Find all your academic resources in one place, sourced from top
+          institutions and communities.
         </p>
       </div>
 
@@ -41,8 +90,10 @@ export default function AcademicHubPage() {
         <div className="lg:col-span-2">
           <Tabs defaultValue="B.Tech" className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-              {Object.keys(courses).map(course => (
-                <TabsTrigger key={course} value={course}>{course}</TabsTrigger>
+              {Object.keys(courses).map((course) => (
+                <TabsTrigger key={course} value={course}>
+                  {course}
+                </TabsTrigger>
               ))}
             </TabsList>
             {Object.entries(courses).map(([courseName, courseData]) => (
@@ -50,7 +101,9 @@ export default function AcademicHubPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle>{courseName} Resources</CardTitle>
-                    <CardDescription>Select a semester to view subjects and materials.</CardDescription>
+                    <CardDescription>
+                      Select a semester to view subjects and materials.
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Accordion type="single" collapsible className="w-full">
@@ -59,22 +112,79 @@ export default function AcademicHubPage() {
                           <AccordionTrigger>Semester {i + 1}</AccordionTrigger>
                           <AccordionContent>
                             <div className="flex flex-col gap-4">
-                              {courseData.subjects.slice(i, i + 4).map(subject => (
-                                <Card key={subject} className="bg-muted/50">
-                                  <CardHeader className="flex flex-row items-center justify-between p-4">
-                                    <h3 className="font-semibold">{subject}</h3>
-                                    <Badge variant="secondary">{Math.floor(Math.random() * 8) + 5} Resources</Badge>
-                                  </CardHeader>
-                                  <CardContent className="p-4 pt-0">
-                                    <div className="flex flex-wrap gap-2">
-                                      <Button variant="outline" size="sm" asChild><Link href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank"><Book className="mr-2 size-4" /> Notes (PDF)</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank"><FilePen className="mr-2 size-4" /> Handwritten (PDF)</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank"><FileQuestion className="mr-2 size-4" /> PYQs (PDF)</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href={`https://www.youtube.com/results?search_query=${encodeURIComponent(subject)}`} target="_blank"><Video className="mr-2 size-4" /> YouTube Videos</Link></Button>
-                                    </div>
-                                  </CardContent>
-                                </Card>
-                              ))}
+                              {courseData.subjects
+                                .slice(i, i + 4)
+                                .map((subject) => (
+                                  <Card key={subject} className="bg-muted/50">
+                                    <CardHeader className="flex flex-row items-center justify-between p-4">
+                                      <h3 className="font-semibold">
+                                        {subject}
+                                      </h3>
+                                      <Badge variant="secondary">
+                                        {Math.floor(Math.random() * 8) + 5}{' '}
+                                        Resources
+                                      </Badge>
+                                    </CardHeader>
+                                    <CardContent className="p-4 pt-0">
+                                      <div className="flex flex-wrap gap-2">
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          asChild
+                                        >
+                                          <Link
+                                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                                            target="_blank"
+                                          >
+                                            <Book className="mr-2 size-4" />{' '}
+                                            Notes (PDF)
+                                          </Link>
+                                        </Button>
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          asChild
+                                        >
+                                          <Link
+                                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                                            target="_blank"
+                                          >
+                                            <FilePen className="mr-2 size-4" />{' '}
+                                            Handwritten (PDF)
+                                          </Link>
+                                        </Button>
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          asChild
+                                        >
+                                          <Link
+                                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                                            target="_blank"
+                                          >
+                                            <FileQuestion className="mr-2 size-4" />{' '}
+                                            PYQs (PDF)
+                                          </Link>
+                                        </Button>
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          asChild
+                                        >
+                                          <Link
+                                            href={`https://www.youtube.com/results?search_query=${encodeURIComponent(
+                                              subject
+                                            )}`}
+                                            target="_blank"
+                                          >
+                                            <Video className="mr-2 size-4" />{' '}
+                                            YouTube Videos
+                                          </Link>
+                                        </Button>
+                                      </div>
+                                    </CardContent>
+                                  </Card>
+                                ))}
                             </div>
                           </AccordionContent>
                         </AccordionItem>
@@ -86,12 +196,15 @@ export default function AcademicHubPage() {
             ))}
           </Tabs>
         </div>
-        
+
         <div className="space-y-8">
           <Card>
             <CardHeader>
               <CardTitle>Community Uploads</CardTitle>
-              <CardDescription>Contribute by uploading your handwritten notes and other study materials.</CardDescription>
+              <CardDescription>
+                Contribute by uploading your handwritten notes and other study
+                materials.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <Button className="w-full">
@@ -100,24 +213,32 @@ export default function AcademicHubPage() {
             </CardContent>
           </Card>
           <Card>
-             <CardHeader>
-                <CardTitle>Automated Sourcing</CardTitle>
-                <CardDescription>Our system constantly scrapes open repositories and sites like YouTube for the latest academic content.</CardDescription>
+            <CardHeader>
+              <CardTitle>Automated Sourcing</CardTitle>
+              <CardDescription>
+                Our system constantly scrapes open repositories and sites like
+                YouTube for the latest academic content.
+              </CardDescription>
             </CardHeader>
             <CardContent>
-                <p className="text-sm text-muted-foreground">New content is automatically added and categorized for you.</p>
+              <p className="text-sm text-muted-foreground">
+                New content is automatically added and categorized for you.
+              </p>
             </CardContent>
           </Card>
           <Card>
-             <CardHeader>
-                <CardTitle>Trusted Sources</CardTitle>
-                <CardDescription>We aggregate notes and materials from top educational institutions, Google, and other open-source projects.</CardDescription>
+            <CardHeader>
+              <CardTitle>Trusted Sources</CardTitle>
+              <CardDescription>
+                We aggregate notes and materials from top educational
+                institutions, Google, and other open-source projects.
+              </CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <GraduationCap className="size-5 text-primary" />
-                    <p>High-quality, verified materials.</p>
-                </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <GraduationCap className="size-5 text-primary" />
+                <p>High-quality, verified materials.</p>
+              </div>
             </CardContent>
           </Card>
         </div>
