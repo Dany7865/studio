@@ -10,10 +10,12 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import jsPDF from 'jspdf';
+import { PDFDocument } from 'pdf-lib';
 
 export default function PdfToolsPage() {
   const [fileToConvert, setFileToConvert] = useState<File | null>(null);
-  const [filesToMerge, setFilesToMerge] = useState<FileList | null>(null);
+  const [filesToMerge1, setFilesToMerge1] = useState<FileList | null>(null);
+  const [filesToMerge2, setFilesToMerge2] = useState<FileList | null>(null);
   const [convertedFileUrl, setConvertedFileUrl] = useState<string | null>(null);
   const [mergedFileUrl, setMergedFileUrl] = useState<string | null>(null);
   const { toast } = useToast();
@@ -62,8 +64,16 @@ export default function PdfToolsPage() {
     reader.readAsDataURL(fileToConvert);
   };
 
-  const handleMergePdfs = () => {
-    if (!filesToMerge || filesToMerge.length < 2) {
+  const handleMergePdfs = async () => {
+    const allFiles: File[] = [];
+    if (filesToMerge1) {
+      allFiles.push(...Array.from(filesToMerge1));
+    }
+    if (filesToMerge2) {
+      allFiles.push(...Array.from(filesToMerge2));
+    }
+
+    if (allFiles.length < 2) {
       toast({
         variant: "destructive",
         title: "Not enough files",
@@ -71,16 +81,35 @@ export default function PdfToolsPage() {
       });
       return;
     }
-    // This is a mock merge.
-    const fileNames = Array.from(filesToMerge).map(f => f.name).join(', ');
-    const blob = new Blob([`This is a mock merged PDF from: ${fileNames}`], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    setMergedFileUrl(url);
 
-    toast({
-      title: "Merge Successful (Demonstration)",
-      description: `${filesToMerge.length} files have been merged into a single PDF. This is for demonstration purposes.`,
-    });
+    try {
+      const mergedPdf = await PDFDocument.create();
+      for (const file of allFiles) {
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await PDFDocument.load(arrayBuffer);
+        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        copiedPages.forEach((page) => {
+          mergedPdf.addPage(page);
+        });
+      }
+
+      const mergedPdfFile = await mergedPdf.save();
+      const blob = new Blob([mergedPdfFile], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+      setMergedFileUrl(url);
+
+      toast({
+        title: "Merge Successful",
+        description: `${allFiles.length} files have been merged into a single PDF.`,
+      });
+    } catch (error) {
+        console.error("Error merging PDFs:", error);
+        toast({
+            variant: "destructive",
+            title: "Merge Failed",
+            description: "There was an error merging the PDFs. Please make sure all selected files are valid PDFs.",
+        });
+    }
   };
 
 
@@ -132,8 +161,12 @@ export default function PdfToolsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="file-merger">Select Files</Label>
-                <Input id="file-merger" type="file" multiple accept="application/pdf" onChange={(e) => { setFilesToMerge(e.target.files); setMergedFileUrl(null); }} />
+                <Label htmlFor="file-merger-1">Select Files</Label>
+                <Input id="file-merger-1" type="file" multiple accept="application/pdf" onChange={(e) => { setFilesToMerge1(e.target.files); setMergedFileUrl(null); }} />
+              </div>
+               <div className="grid w-full items-center gap-1.5">
+                <Label htmlFor="file-merger-2">Select More Files</Label>
+                <Input id="file-merger-2" type="file" multiple accept="application/pdf" onChange={(e) => { setFilesToMerge2(e.target.files); setMergedFileUrl(null); }} />
               </div>
               <Button className="w-full" onClick={handleMergePdfs}>
                 <Merge className="mr-2 size-4" /> Merge PDFs
