@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { FileUp, Trash2, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import Image from 'next/image';
 
 interface UploadedFile {
   id: string;
@@ -99,18 +98,14 @@ export default function CommunityUploadsPage() {
                     <div className="grid gap-6 sm:grid-cols-2">
                         {uploads.map(upload => (
                             <Card key={upload.id} className="group">
-                                <CardHeader className="p-0">
-                                    <div className="relative h-40 w-full overflow-hidden rounded-t-lg">
-                                        <Image src={upload.previewUrl || 'https://placehold.co/600x400.png'} alt={upload.name} layout="fill" objectFit="cover" data-ai-hint="document abstract" />
-                                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors" />
-                                        <Button variant="ghost" size="icon" className="absolute top-2 right-2 text-white/70 hover:text-white hover:bg-white/10" onClick={() => handleDelete(upload.id)}>
-                                            <Trash2 className="size-4"/>
-                                            <span className="sr-only">Delete</span>
-                                        </Button>
-                                    </div>
+                                <CardHeader className="flex flex-row items-center justify-between p-4">
+                                     <h3 className="font-semibold truncate">{upload.name}</h3>
+                                     <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive" onClick={() => handleDelete(upload.id)}>
+                                        <Trash2 className="size-4"/>
+                                        <span className="sr-only">Delete</span>
+                                    </Button>
                                 </CardHeader>
-                                <CardContent className="p-4 space-y-2">
-                                    <h3 className="font-semibold truncate">{upload.name}</h3>
+                                <CardContent className="p-4 pt-0 space-y-2">
                                     <div className="text-xs text-muted-foreground flex flex-wrap gap-x-2 gap-y-1">
                                         <span>Course: <strong>{upload.course}</strong></span>
                                         <span>Subject: <strong>{upload.subject}</strong></span>
