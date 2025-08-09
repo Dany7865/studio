@@ -62,11 +62,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
       </Sidebar>
       <SidebarInset>
         <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-card px-4 md:hidden">
-          <SidebarTrigger asChild>
-            <Button size="icon" variant="outline">
-              <Logo className="size-6 text-primary" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
+          <SidebarTrigger>
+            <Logo className="size-6 text-primary" />
+            <span className="sr-only">Toggle Menu</span>
           </SidebarTrigger>
           <h1 className="text-lg font-semibold">EduMate.AI</h1>
         </header>
