@@ -37,6 +37,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
     <div 
       className="relative min-h-screen"
     >
+      <div className="stars">
+        <div className="stars-bg"></div>
+      </div>
       <div className="relative z-10">
         <SidebarProvider>
           <Sidebar>
