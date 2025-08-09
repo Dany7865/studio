@@ -39,15 +39,7 @@ export default function Home() {
           <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
             Welcome to EduMate.AI
           </h1>
-          <Image 
-            src="https://storage.googleapis.com/project-spark-301511-studio-data/projects/clxiahso100013b69q376cv3i/assets/clxo2b6su00043b69q1q4c538.png" 
-            alt="Friendly AI Robot reading a book" 
-            width={150} 
-            height={150}
-            data-ai-hint="friendly robot book"
-            className="my-6 mx-auto"
-          />
-           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-2">
+           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-4">
             Your all-in-one platform for academic success and career guidance.
           </p>
         </div>
