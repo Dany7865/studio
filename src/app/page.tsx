@@ -34,25 +34,14 @@ const features = [
 export default function Home() {
   return (
     <div className="flex flex-col gap-8">
-       <Card className="flex flex-col md:flex-row items-center gap-8 p-8 bg-card/80 backdrop-blur-sm">
-        <div className="flex-1 text-center md:text-left">
+       <Card className="flex flex-col items-center gap-8 p-8 bg-card/80 backdrop-blur-sm">
+        <div className="flex-1 text-center">
           <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
             Welcome to EduMate.AI
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto md:mx-0">
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             Your all-in-one platform for academic success and career guidance.
           </p>
-        </div>
-        <div className="flex-shrink-0">
-          <Image 
-            src="https://storage.googleapis.com/stately-studio-public/edumate-robot-bg.png"
-            alt="Friendly Robot Mascot"
-            width={250}
-            height={250}
-            className="rounded-full object-cover"
-            priority
-            data-ai-hint="robot mascot"
-          />
         </div>
       </Card>
 
