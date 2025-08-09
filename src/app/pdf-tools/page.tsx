@@ -101,8 +101,12 @@ export default function PdfToolsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="file-merger">Select Files</Label>
-                <Input id="file-merger" type="file" multiple onChange={(e) => setFilesToMerge(e.target.files)} />
+                <Label htmlFor="file-merger-1">Select File 1</Label>
+                <Input id="file-merger-1" type="file" multiple onChange={(e) => setFilesToMerge(e.target.files)} />
+              </div>
+              <div className="grid w-full items-center gap-1.5">
+                <Label htmlFor="file-merger-2">Select File 2</Label>
+                <Input id="file-merger-2" type="file" multiple />
               </div>
               <Button className="w-full" onClick={handleMergePdfs}>
                 <Merge className="mr-2 size-4" /> Merge PDFs
