@@ -34,10 +34,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <div 
-      className="relative min-h-screen bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('https://storage.googleapis.com/stately-studio-public/edumate-robot-bg.png')" }}
+      className="relative min-h-screen"
     >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
       <div className="relative z-10">
         <SidebarProvider>
           <Sidebar>

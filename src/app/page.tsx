@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, BookOpen, BrainCircuit, FileCog, FileText } from "lucide-react";
+import Image from "next/image";
 
 const features = [
   {
@@ -33,18 +34,26 @@ const features = [
 export default function Home() {
   return (
     <div className="flex flex-col gap-8">
-      <div 
-        className="relative rounded-xl p-8 lg:p-12 text-center text-white"
-      >
-        <div className="relative z-10">
+       <Card className="flex flex-col md:flex-row items-center gap-8 p-8 bg-card/80 backdrop-blur-sm">
+        <div className="flex-1 text-center md:text-left">
           <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
             Welcome to EduMate.AI
           </h1>
-          <p className="mt-4 text-lg text-white/90 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto md:mx-0">
             Your all-in-one platform for academic success and career guidance.
           </p>
         </div>
-      </div>
+        <div className="flex-shrink-0">
+          <Image 
+            src="https://storage.googleapis.com/stately-studio-public/edumate-robot-bg.png"
+            alt="Friendly Robot Mascot"
+            width={250}
+            height={250}
+            className="rounded-full object-cover"
+            priority
+          />
+        </div>
+      </Card>
 
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
