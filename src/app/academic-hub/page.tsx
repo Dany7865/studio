@@ -71,6 +71,19 @@ const courses = {
       'Business Strategy',
     ],
   },
+  NIET: {
+    semesters: 8,
+    subjects: [
+      'Applied Physics',
+      'Programming for Problem Solving',
+      'Emerging Technology for Engineering',
+      'AI For Engineering',
+      'Data Structures',
+      'Computer Organization and Architecture',
+      'Operating Systems',
+      'Compiler Design',
+    ]
+  }
 };
 
 export default function AcademicHubPage() {
@@ -89,7 +102,7 @@ export default function AcademicHubPage() {
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Tabs defaultValue="B.Tech" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
               {Object.keys(courses).map((course) => (
                 <TabsTrigger key={course} value={course}>
                   {course}
