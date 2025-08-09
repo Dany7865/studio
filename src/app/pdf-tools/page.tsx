@@ -27,13 +27,13 @@ export default function PdfToolsPage() {
       return;
     }
     // This is a mock conversion. In a real app, you'd send the file to a server.
-    const blob = new Blob(["This is a mock PDF file."], { type: "application/pdf" });
+    const blob = new Blob(["This is a mock PDF file and not a valid PDF document."], { type: "application/pdf" });
     const url = URL.createObjectURL(blob);
     setConvertedFileUrl(url);
 
     toast({
-      title: "Conversion Successful",
-      description: `${fileToConvert.name} has been converted to PDF. (Demonstration)`,
+      title: "Conversion Successful (Demonstration)",
+      description: `A placeholder PDF has been generated. This is for demonstration purposes only and is not a valid PDF file.`,
     });
   };
 
