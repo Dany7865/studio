@@ -33,7 +33,7 @@ export default function AcademicHubPage() {
           Academic Hub
         </h1>
         <p className="mt-2 text-lg text-muted-foreground">
-          Find all your academic resources in one place.
+          Find all your academic resources in one place, sourced from top institutions and communities.
         </p>
       </div>
 
@@ -63,14 +63,14 @@ export default function AcademicHubPage() {
                                 <Card key={subject} className="bg-muted/50">
                                   <CardHeader className="flex flex-row items-center justify-between p-4">
                                     <h3 className="font-semibold">{subject}</h3>
-                                    <Badge variant="secondary">{Math.floor(Math.random() * 5) + 3} Resources</Badge>
+                                    <Badge variant="secondary">{Math.floor(Math.random() * 8) + 5} Resources</Badge>
                                   </CardHeader>
                                   <CardContent className="p-4 pt-0">
                                     <div className="flex flex-wrap gap-2">
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><Book className="mr-2 size-4" /> Notes</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><FilePen className="mr-2 size-4" /> Handwritten Notes</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><FileQuestion className="mr-2 size-4" /> PYQs</Link></Button>
-                                      <Button variant="outline" size="sm" asChild><Link href="#"><Video className="mr-2 size-4" /> Videos</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="#"><Book className="mr-2 size-4" /> Notes (PDF)</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="#"><FilePen className="mr-2 size-4" /> Handwritten (PDF)</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="#"><FileQuestion className="mr-2 size-4" /> PYQs (PDF)</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="#"><Video className="mr-2 size-4" /> YouTube Videos</Link></Button>
                                     </div>
                                   </CardContent>
                                 </Card>
@@ -91,7 +91,7 @@ export default function AcademicHubPage() {
           <Card>
             <CardHeader>
               <CardTitle>Community Uploads</CardTitle>
-              <CardDescription>Contribute to the community by uploading your study materials.</CardDescription>
+              <CardDescription>Contribute by uploading your handwritten notes and other study materials.</CardDescription>
             </CardHeader>
             <CardContent>
               <Button className="w-full">
@@ -102,16 +102,16 @@ export default function AcademicHubPage() {
           <Card>
              <CardHeader>
                 <CardTitle>Automated Sourcing</CardTitle>
-                <CardDescription>Our system constantly scrapes open repositories for the latest academic content, ensuring you're always up-to-date.</CardDescription>
+                <CardDescription>Our system constantly scrapes open repositories and sites like YouTube for the latest academic content.</CardDescription>
             </CardHeader>
             <CardContent>
-                <p className="text-sm text-muted-foreground">New content is automatically added and categorized for your convenience.</p>
+                <p className="text-sm text-muted-foreground">New content is automatically added and categorized for you.</p>
             </CardContent>
           </Card>
           <Card>
              <CardHeader>
                 <CardTitle>Trusted Sources</CardTitle>
-                <CardDescription>We aggregate notes and materials from top educational institutions and open-source Google projects to provide high-quality learning content.</CardDescription>
+                <CardDescription>We aggregate notes and materials from top educational institutions, Google, and other open-source projects.</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
