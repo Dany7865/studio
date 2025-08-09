@@ -51,6 +51,7 @@ export default function Home() {
           alt="AI Robot teaching in a classroom"
           width={450}
           height={300}
+          quality={75}
           className="rounded-lg shadow-xl"
           data-ai-hint="robot classroom"
         />
