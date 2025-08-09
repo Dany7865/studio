@@ -4,7 +4,7 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, BrainCircuit, FileCog, FileText, LayoutDashboard } from 'lucide-react';
+import { BookOpen, BrainCircuit, FileCog, FileText, LayoutDashboard, Users } from 'lucide-react';
 
 import {
   Sidebar,
@@ -25,6 +25,7 @@ const navItems = [
   { href: '/', icon: LayoutDashboard, label: 'Dashboard', tooltip: 'Dashboard' },
   { href: '/career-ai', icon: BrainCircuit, label: 'Smart Career AI', tooltip: 'Career AI' },
   { href: '/academic-hub', icon: BookOpen, label: 'Academic Hub', tooltip: 'Academics' },
+  { href: '/community-uploads', icon: Users, label: 'Community', tooltip: 'Community' },
   { href: '/resume-builder', icon: FileText, label: 'Resume Builder', tooltip: 'Resume' },
   { href: '/pdf-tools', icon: FileCog, label: 'PDF Tools', tooltip: 'PDF Tools' },
 ];

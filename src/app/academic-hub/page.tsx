@@ -226,8 +226,10 @@ export default function AcademicHubPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button className="w-full">
-                <Upload className="mr-2 size-4" /> Upload Content
+              <Button className="w-full" asChild>
+                <Link href="/community-uploads">
+                  <Upload className="mr-2 size-4" /> Upload Content
+                </Link>
               </Button>
             </CardContent>
           </Card>
