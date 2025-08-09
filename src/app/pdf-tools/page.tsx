@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FileUp, Merge, Shuffle } from "lucide-react";
+import { Download, FileUp, Merge, Shuffle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 export default function PdfToolsPage() {
   const [fileToConvert, setFileToConvert] = useState<File | null>(null);
   const [filesToMerge, setFilesToMerge] = useState<FileList | null>(null);
+  const [convertedFileUrl, setConvertedFileUrl] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleConvertToPdf = () => {
@@ -25,6 +26,10 @@ export default function PdfToolsPage() {
       return;
     }
     // This is a mock conversion. In a real app, you'd send the file to a server.
+    const blob = new Blob(["This is a mock PDF file."], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    setConvertedFileUrl(url);
+
     toast({
       title: "Conversion Successful",
       description: `${fileToConvert.name} has been converted to PDF. (Demonstration)`,
@@ -73,11 +78,18 @@ export default function PdfToolsPage() {
             <CardContent className="space-y-4">
               <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="file-converter">Select File</Label>
-                <Input id="file-converter" type="file" onChange={(e) => setFileToConvert(e.target.files?.[0] || null)} />
+                <Input id="file-converter" type="file" onChange={(e) => { setFileToConvert(e.target.files?.[0] || null); setConvertedFileUrl(null); }} />
               </div>
               <Button className="w-full" onClick={handleConvertToPdf}>
                 <FileUp className="mr-2 size-4" /> Convert to PDF
               </Button>
+              {convertedFileUrl && (
+                <Button variant="outline" className="w-full" asChild>
+                  <a href={convertedFileUrl} download={`${fileToConvert?.name.split('.')[0] || 'converted'}.pdf`}>
+                    <Download className="mr-2 size-4" /> Download PDF
+                  </a>
+                </Button>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
