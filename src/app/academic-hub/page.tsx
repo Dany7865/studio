@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Book, Upload, Video, FileQuestion, FilePen } from "lucide-react";
+import { Book, Upload, Video, FileQuestion, FilePen, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 const courses = {
@@ -106,6 +106,18 @@ export default function AcademicHubPage() {
             </CardHeader>
             <CardContent>
                 <p className="text-sm text-muted-foreground">New content is automatically added and categorized for your convenience.</p>
+            </CardContent>
+          </Card>
+          <Card>
+             <CardHeader>
+                <CardTitle>Trusted Sources</CardTitle>
+                <CardDescription>We aggregate notes and materials from top educational institutions and open-source Google projects to provide high-quality learning content.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <GraduationCap className="size-5 text-primary" />
+                    <p>High-quality, verified materials.</p>
+                </div>
             </CardContent>
           </Card>
         </div>
