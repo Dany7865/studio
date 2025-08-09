@@ -133,7 +133,9 @@ export default function AcademicHubPage() {
                                           asChild
                                         >
                                           <Link
-                                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                                            href={`https://www.google.com/search?q=${encodeURIComponent(
+                                              subject
+                                            )}+notes+pdf`}
                                             target="_blank"
                                           >
                                             <Book className="mr-2 size-4" />{' '}
@@ -146,7 +148,9 @@ export default function AcademicHubPage() {
                                           asChild
                                         >
                                           <Link
-                                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                                            href={`https://www.google.com/search?q=${encodeURIComponent(
+                                              subject
+                                            )}+handwritten+notes+pdf`}
                                             target="_blank"
                                           >
                                             <FilePen className="mr-2 size-4" />{' '}
@@ -159,7 +163,9 @@ export default function AcademicHubPage() {
                                           asChild
                                         >
                                           <Link
-                                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                                            href={`https://www.google.com/search?q=${encodeURIComponent(
+                                              subject
+                                            )}+previous+year+questions+pdf`}
                                             target="_blank"
                                           >
                                             <FileQuestion className="mr-2 size-4" />{' '}
