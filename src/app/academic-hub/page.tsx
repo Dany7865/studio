@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Book, Upload, Video, FileQuestion } from "lucide-react";
+import { Book, Upload, Video, FileQuestion, FilePen } from "lucide-react";
 import Link from "next/link";
 
 const courses = {
@@ -68,6 +68,7 @@ export default function AcademicHubPage() {
                                   <CardContent className="p-4 pt-0">
                                     <div className="flex flex-wrap gap-2">
                                       <Button variant="outline" size="sm" asChild><Link href="#"><Book className="mr-2 size-4" /> Notes</Link></Button>
+                                      <Button variant="outline" size="sm" asChild><Link href="#"><FilePen className="mr-2 size-4" /> Handwritten Notes</Link></Button>
                                       <Button variant="outline" size="sm" asChild><Link href="#"><FileQuestion className="mr-2 size-4" /> PYQs</Link></Button>
                                       <Button variant="outline" size="sm" asChild><Link href="#"><Video className="mr-2 size-4" /> Videos</Link></Button>
                                     </div>
