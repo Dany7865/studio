@@ -40,7 +40,7 @@ export default function Home() {
             Welcome to EduMate.AI
           </h1>
           <Image 
-            src="https://storage.googleapis.com/project-spark-301511-studio-data/projects/clxiahso100013b69q376cv3i/clxkv2mmy000d3b699s5xjw4e.png" 
+            src="https://storage.googleapis.com/project-spark-301511-studio-data/projects/clxiahso100013b69q376cv3i/assets/clxo2b6su00043b69q1q4c538.png" 
             alt="Friendly AI Robot reading a book" 
             width={150} 
             height={150}
