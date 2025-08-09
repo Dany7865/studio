@@ -36,7 +36,7 @@ export default function Home() {
     <div className="flex flex-col gap-8">
        <Card className="flex flex-col items-center gap-4 p-8 bg-card/80 backdrop-blur-sm">
         <div className="flex-1 text-center">
-          <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
+          <h1 className="text-3xl font-headline font-bold tracking-tight md:text-5xl">
             Welcome to EduMate.AI
           </h1>
            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-4">
