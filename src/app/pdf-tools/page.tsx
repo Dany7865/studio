@@ -14,6 +14,7 @@ export default function PdfToolsPage() {
   const [fileToConvert, setFileToConvert] = useState<File | null>(null);
   const [filesToMerge, setFilesToMerge] = useState<FileList | null>(null);
   const [convertedFileUrl, setConvertedFileUrl] = useState<string | null>(null);
+  const [mergedFileUrl, setMergedFileUrl] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleConvertToPdf = () => {
@@ -46,6 +47,11 @@ export default function PdfToolsPage() {
       return;
     }
     // This is a mock merge.
+    const fileNames = Array.from(filesToMerge).map(f => f.name).join(', ');
+    const blob = new Blob([`This is a mock merged PDF from: ${fileNames}`], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    setMergedFileUrl(url);
+
     toast({
       title: "Merge Successful",
       description: `${filesToMerge.length} files have been merged into a single PDF. (Demonstration)`,
@@ -101,16 +107,19 @@ export default function PdfToolsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="file-merger-1">Select File 1</Label>
-                <Input id="file-merger-1" type="file" multiple onChange={(e) => setFilesToMerge(e.target.files)} />
-              </div>
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="file-merger-2">Select File 2</Label>
-                <Input id="file-merger-2" type="file" multiple />
+                <Label htmlFor="file-merger">Select Files</Label>
+                <Input id="file-merger" type="file" multiple onChange={(e) => { setFilesToMerge(e.target.files); setMergedFileUrl(null); }} />
               </div>
               <Button className="w-full" onClick={handleMergePdfs}>
                 <Merge className="mr-2 size-4" /> Merge PDFs
               </Button>
+              {mergedFileUrl && (
+                <Button variant="outline" className="w-full" asChild>
+                  <a href={mergedFileUrl} download="merged.pdf">
+                    <Download className="mr-2 size-4" /> Download Merged PDF
+                  </a>
+                </Button>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
