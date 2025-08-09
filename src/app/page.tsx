@@ -49,8 +49,8 @@ export default function Home() {
         <Image 
           src="https://storage.googleapis.com/project-spark-34129338-2d86-45db-9922-421c60f785b4/public/images/f36e4f1a-b0c6-4a7b-a1e4-3e9a58933b9c.png"
           alt="AI Robot teaching in a classroom"
-          width={300}
-          height={200}
+          width={200}
+          height={133}
           quality={75}
           className="rounded-lg shadow-xl"
           data-ai-hint="robot classroom"
